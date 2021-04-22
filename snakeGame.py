@@ -64,7 +64,7 @@ def start():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_p:
-                    gameloop()
+                    difficultyLevel()
                 if event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()
@@ -72,7 +72,7 @@ def start():
                 x, y = event.pos
                 if x > startGame_rect.left and x < startGame_rect.right:
                     if y > startGame_rect.top and y < startGame_rect.bottom:
-                        gameloop()
+                        difficultyLevel()
                 if x > quitGame_rect.left and x < quitGame_rect.right:
                     if y > quitGame_rect.top and y < quitGame_rect.bottom:
                         pygame.quit()
@@ -80,19 +80,68 @@ def start():
 
         pygame.display.update()
 
+def difficultyLevel():
+
+    background.fill(whitecolor)
+    global snakeSpeed
+    difficultLevelSelectMsg = medium_font.render("Please select the difficulty level to play", True, redcolor, greencolor)
+    easyMsg = small_font.render("1. Easy", True, bluecolor, greencolor)
+    mediumMsg = small_font.render("2. Medium", True, bluecolor, greencolor)
+    hardMsg = small_font.render("3. Hard", True, bluecolor, greencolor)
+    defaultMsg = small_font.render("4. Default",True,bluecolor, greencolor)
+
+    difficultLevelSelectMsg_rect = difficultLevelSelectMsg.get_rect()
+    easyMsg_rect = easyMsg.get_rect()
+    mediumMsg_rect = mediumMsg.get_rect()
+    hardMsg_rect = hardMsg.get_rect()
+    defaultMsg_rect = defaultMsg.get_rect()
+    
+    difficultLevelSelectMsg_rect.center = (windowWidth/2, windowHeight/2 - 100)
+    easyMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 50)
+    mediumMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 100)
+    hardMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 150)
+    defaultMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 200)
+
+    background.blit(difficultLevelSelectMsg, difficultLevelSelectMsg_rect)
+    background.blit(easyMsg, easyMsg_rect)
+    background.blit(mediumMsg, mediumMsg_rect)
+    background.blit(hardMsg, hardMsg_rect)
+    background.blit(defaultMsg, defaultMsg_rect)
+    pygame.display.update()
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    snakeSpeed = 10
+                    gameloop()
+                if event.key == pygame.K_2:
+                    snakeSpeed = 25
+                    gameloop()
+                if event.key == pygame.K_3:
+                    snakeSpeed = 40
+                    gameloop()
+                if event.key == pygame.K_4:
+                    gameloop()
+        pygame.display.update()
+
 def gameover():
     global HIGHSCORE
+    global snakeSpeed
     
     gameoverMsg = large_font.render('GAME OVER', True, redcolor)
     highScore = small_font.render("High Score : " + str(HIGHSCORE),True,bluecolor)
     
     playAgainMsg = medium_font.render("Press P to Play Again",True, greencolor)
-    resetScoreMsg = medium_font.render("Press R to Reset the game Score & play",True,bluecolor)
+    resetScoreMsg = medium_font.render("Press R to Reset the game",True,bluecolor)
     quitMsg = medium_font.render("Press Q to Quit the game",True,redcolor)
 
     background.blit(gameoverMsg, [windowWidth/3, windowHeight/3])
     background.blit(playAgainMsg, [windowWidth / 3 - 50, windowHeight / 3 + 50])
-    background.blit(resetScoreMsg, [windowWidth / 3 - 100, windowHeight / 3 + 100])
+    background.blit(resetScoreMsg, [windowWidth / 3 - 50, windowHeight / 3 + 100])
     background.blit(quitMsg, [windowWidth / 3 - 50, windowHeight / 3 + 150])
     background.blit(whitecolor_img, (windowWidth - 50, 0))
     background.blit(highScore,(windowWidth / 3,10))
@@ -109,7 +158,7 @@ def gameover():
                     gameloop()
                 if event.key == pygame.K_r:
                     HIGHSCORE = 0
-                    gameloop()
+                    start()
                 if event.key == pygame.K_q:
                     pygame.quit()
                     sys.exit()
