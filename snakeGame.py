@@ -184,8 +184,8 @@ def snake(snakelist, direction):
     background.blit(tail, snakelist[0])
 
     #Creating the body for the snake using rect function
-    for XnY in snakelist[1:-1]:
-        pygame.draw.rect(background, bluecolor, (XnY[0], XnY[1], snakeWidth, snakeWidth))
+    for each in snakelist[1:-1]:
+        pygame.draw.rect(background, bluecolor, (each[0], each[1], snakeWidth, snakeWidth))
 
 
 def pauseGame():
