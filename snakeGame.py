@@ -84,11 +84,11 @@ def difficultyLevel():
 
     background.fill(whitecolor)
     global snakeSpeed
-    difficultLevelSelectMsg = medium_font.render("Please select the difficulty level to play", True, redcolor, greencolor)
-    easyMsg = small_font.render("1. Easy", True, bluecolor, greencolor)
-    mediumMsg = small_font.render("2. Medium", True, bluecolor, greencolor)
-    hardMsg = small_font.render("3. Hard", True, bluecolor, greencolor)
-    defaultMsg = small_font.render("4. Default",True,bluecolor, greencolor)
+    difficultLevelSelectMsg = medium_font.render("Select the difficulty level to play", True, redcolor, greencolor)
+    easyMsg = medium_font.render("1. Easy", True, bluecolor, greencolor)
+    mediumMsg = medium_font.render("2. Medium", True, bluecolor, greencolor)
+    hardMsg = medium_font.render("3. Hard", True, bluecolor, greencolor)
+    defaultMsg = medium_font.render("4. Default",True,bluecolor, greencolor)
 
     difficultLevelSelectMsg_rect = difficultLevelSelectMsg.get_rect()
     easyMsg_rect = easyMsg.get_rect()
@@ -97,10 +97,10 @@ def difficultyLevel():
     defaultMsg_rect = defaultMsg.get_rect()
     
     difficultLevelSelectMsg_rect.center = (windowWidth/2, windowHeight/2 - 100)
-    easyMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 50)
-    mediumMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 100)
-    hardMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 150)
-    defaultMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 200)
+    easyMsg_rect.center = (windowWidth/3 + 100, windowHeight/2)
+    mediumMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 50)
+    hardMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 100)
+    defaultMsg_rect.center = (windowWidth/3 + 100, windowHeight/2 + 150)
 
     background.blit(difficultLevelSelectMsg, difficultLevelSelectMsg_rect)
     background.blit(easyMsg, easyMsg_rect)
